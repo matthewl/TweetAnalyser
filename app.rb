@@ -45,7 +45,7 @@ if ARGV.count > 0
 else
   file = open('twitter_stats.csv', 'w')
 
-  file << "Account, Tweets per day, Start date, End date"
+  file << "Account, Tweets per day, Start date, End date\n"
 
   client.friends.each do |friend|
     tweets = client.user_timeline(friend.screen_name, count: TWEET_COUNT)
