@@ -47,7 +47,10 @@ else
 
   file << "Account, Tweets per day, Start date, End date\n"
 
+  puts "Checking stats ..."
+
   client.friends.each do |friend|
+    puts "... for #{friend.screen_name}"
     tweets = client.user_timeline(friend.screen_name, count: TWEET_COUNT)
     next if tweets.count == 0
 
@@ -56,6 +59,7 @@ else
     tweets_per_day = tweets.count / ((start_date - end_date) / DAY_DIVIDER)
 
     file << "#{friend.screen_name}, #{tweets_per_day.round(1)}, #{start_date.strftime("%Y-%m-%d %H:%M")}, #{end_date.strftime("%Y-%m-%d %H:%M")}\n"
+    sleep 30
   end
 
   file.close
